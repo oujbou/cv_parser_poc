@@ -1,0 +1,6 @@
+chatgpt.py
+venv/
+constants.py
+keys.py
+*.pdf
+__pycache__
