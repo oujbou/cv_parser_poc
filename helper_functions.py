@@ -1,4 +1,3 @@
-import os
 import json
 from keys import OPENAI_API_KEY
 from openai import OpenAI
@@ -8,18 +7,6 @@ from PyPDF2 import PdfReader
 
 
 client = OpenAI(api_key=OPENAI_API_KEY)
-#OPENAI_API_KEY = os.getenv(OPENAI_API_KEY)
-# client = OpenAI(api_key=OPENAI_API_KEY)
-
-# from docx import Document
-# from PIL import Image
-# import pytesseract
-
-# client = OpenAI(
-#     api_key=os.environ['OPENAI_API_KEY'],
-# )
-
-
 
 def extract_resume_data(text):
     prompt = get_prompt() + text
@@ -40,9 +27,9 @@ def extract_resume_data(text):
         pass
 
     return pd.DataFrame({
-        "Entities": ["Name", "email_id", "mob_number", "qualification", "experience", "skills", "certification",
-                     "achievement"],
-        "value": ["", "", "", "", "", "", "", ""]
+        "Entities": ["Name", "email_id", "mob_number", "qualification", "experience",
+                     "companies", "skills", "certification", "achievement"],
+        "value": ["", "", "", "", "", "", "", "", ""]
 
     })
 

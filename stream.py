@@ -1,12 +1,12 @@
 import streamlit as st
 import pandas as pd
-#import openai_helper
 from helper_functions import extract_resume_data, extract_from_pdf
 
 resume_data = pd.DataFrame({
-    "Entities": ["Name", "email_id", "mob_number", "qualification", "experience", "skills", "certification",
+    "Entities": ["Name", "email_id", "mob_number", "qualification", "experience", 
+                 "companies", "skills", "certification",
                  "achievement"],
-    "value": ["", "", "", "", "", "", "", ""]
+    "value": ["", "", "", "", "", "", "", "", ""]
 })
 
 st.title("Resume Extractor App")
@@ -16,7 +16,7 @@ uploaded_file = st.file_uploader("upload a file", type=["pdf", "docx", "png", "j
 if uploaded_file is not None:
     text = extract_from_pdf(uploaded_file)
 
-if st.button("Extract"):
+if st.button("Extract (Currently, only PDFs are supported)") and text:
     resume_data = extract_resume_data(text)
 
 st.dataframe(resume_data,
